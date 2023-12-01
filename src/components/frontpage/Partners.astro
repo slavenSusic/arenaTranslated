@@ -1,0 +1,43 @@
+---
+import { img } from "astro:assets";
+import croz from '../../assets/croz2.png'
+import kaufland from '../../assets/kaufland.png'
+import rba from '../../assets/rba.png'
+import apis from '../../assets/apis2.jpg'
+import pbz from '../../assets/pbz3.jpg'
+---
+
+
+<div class=" px-10">
+<div class=" sm:pe-6 lg:pe-8 py-20">
+    <div class="flex flex-col justify-center items-center py-10">
+        <p class="text-green-500 text-left font-bold text-lg md:text-2xl">TRUSTED BY OVER 50</p>
+        <h2 class="text-left font-bold text-4xl md:text-4xl">Our Partners</h2>
+        
+    </div>
+
+  
+  
+       
+        <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5 md:max-w-xl md:mx-auto place-items-center  lg:max-w-6xl lg:mx-auto">
+            <div class="flex items-center justify-center w-full   px-2 mb-4 md:mb-0">
+            <img src={croz.src} alt="logo" style="aspect-ratio:89/56" height="42" width="210" class=" object-contain w-full  py-2 px-2 rounded-md border-2"/>
+        </div>
+        <div class="flex items-center justify-center w-full   px-2 mb-4 md:mb-0">
+            <img src={kaufland.src} alt="logo" style="aspect-ratio:89/56"  class=" object-contain  w-full  py-2 px-2 rounded-md border-2"/>
+        </div>
+        <div class="flex items-center justify-center w-full   px-2 mb-4 md:mb-0">
+            <img src={rba.src} alt="logo" style="aspect-ratio:89/56"  class=" object-contain w-full  py-2 px-2 rounded-md border-2"/>
+        </div>
+
+      
+        <div class="flex items-center justify-center w-full   px-2 mb-4 md:mb-0">
+            <img src={apis.src} alt="logo" style="aspect-ratio:89/56"  class=" object-contain  w-full  py-2 px-2 rounded-md border-2"/>
+        </div>
+        <div class="flex items-center justify-center w-full   px-2 mb-4 md:mb-0">
+            <img src={pbz.src} alt="logo"  style="aspect-ratio:89/56"  class=" object-contain  w-full  py-2 px-2 rounded-md border-2"/>
+        </div>
+    </div>
+
+
+    

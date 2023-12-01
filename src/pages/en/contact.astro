@@ -1,0 +1,14 @@
+---
+import { changeLanguage } from "i18next";
+
+changeLanguage("en");
+---
+
+<button onclick="openEmail()">Contact Us</button>
+
+<script is:inline>
+    function openEmail() {
+        // Replace 'company@info.com' with your desired email address
+        window.location.href = 'mailto:company@info.com';
+    }
+</script>
