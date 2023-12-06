@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { blogContent } from "./blog";
 import { tabsData } from "./tabs";
 
-function Blogs() {
+function Blogs({lang}) {
   const [filteredItems, setFilteredItems] = useState(blogContent);
   const [filteredTabs, setFilteredTabs] = useState(tabsData);
   const [activeAll, setActiveAll] = useState(true);
@@ -87,17 +87,22 @@ function Blogs() {
       <div className="grid md:grid-cols-2 xl:grid-cols-2 max-w-3xl mx-auto gap-20 w-full">
         {filteredItems.map((item) => (
           <div key={item.id} className="relative group">
-            <a
-              href={`/portfolio/${item.headline
-                .toLowerCase()
-                .replace(/\s/g, "-")
-                .replaceAll(",", "")
-                .replaceAll("ć", "c")
-                .replaceAll("š", "s")
-                .replaceAll("!", "")
-                .replaceAll("?", "")}`}
-              className="block  rounded-md overflow-hidden"
-            >
+      <a
+  href={
+    (lang === undefined
+      ? `/hr/portfolio/${item.headline}`
+      : `/en/portfolio/${item.headline}`
+    )
+      .toLowerCase()
+      .replace(/\s/g, "-")
+      .replaceAll(",", "")
+      .replaceAll("ć", "c")
+      .replaceAll("š", "s")
+      .replaceAll("!", "")
+      .replaceAll("?", "")
+  }
+  className="block rounded-md overflow-hidden"
+>
               <div className="bg-gray-200 border border-gray-300 shadow-md p-5">
                 <img
                   src={item.src.src}
@@ -110,7 +115,7 @@ function Blogs() {
               group-hover:opacity-100 group-hover:translate-y-[-7rem] mx-2 py-4 rounded-lg ease-in">
               <h2 className="text-lg text-center opacity-0 group-hover:opacity-100 -translate-x-0 group-hover:translate-x-5 duration-500 delay-200 text-green-500 font-semibold">{item.category}</h2>
               <a
-                href={`portfolio/${item.headline
+                  href={`/${lang}/portfolio/${item.headline
                   .toLowerCase()
                   .replace(/\s/g, "-")
                   .replaceAll(",", "")
