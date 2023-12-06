@@ -115,7 +115,7 @@ const Navbar = ({homeText,homeLink,
                 href={`/${code}/`}
                 className="text-lg text-white hover:text-green-800 transition duration-300 group-hover:text-green-700 p-3"
               >
-                {label}
+               {label}
               </a>
             </motion.li>
           ))}

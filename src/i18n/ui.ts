@@ -11,8 +11,8 @@ export const routes = {
 
 
 export const languages = {
-    en: 'English',
-    hr: 'Hrvatski',
+    en: 'EN',
+    hr: 'HR',
   };
 
   
