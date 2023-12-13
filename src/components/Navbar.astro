@@ -10,8 +10,15 @@ import { Image } from 'astro:assets';
 import LanguagePicker from './LanguagePicker.astro';
 import Navbar from './Navbar.jsx'
 ---
-<Navbar homeText={t('nav.home')} homeLink={`/${lang}/`} services={t('nav.services')} servicesLink={`/${lang}/services`} 
-about={t('nav.about')} aboutLink={`/${lang}/about`} portfolio={t('nav.portfolio')} portfolioLink={`/${lang}/portfolio`} 
+<Navbar homeText={t('nav.home')}
+ homeLink={`/${lang}/`} 
+ 
+ services={t('nav.services')} 
+ servicesLink={`/${lang}/services`} 
+about={t('nav.about')} 
+
+aboutLink={translatePath(`/about/`)}
+ portfolio={t('nav.portfolio')} portfolioLink={`/${lang}/portfolio`} 
 languages={Object.entries(languages).map(([code, label]) => ({ code, label }))}
 client:load/>
 <!-- <ul>

@@ -56,26 +56,19 @@ function Blogs({lang}) {
       </div>
 
       <div>
-        <div className="flex space-x-4 max-w-lg mx-auto pb-20">
+        <div className="flex space-x-4 max-w-lg mx-auto pb-20 px-5">
           <button
             onClick={handleFilterAll}
-            className={`flex-1 ${activeAll ? "bg-green-500" : ""} ${
+            className={`flex-1 duration-all duration-300  ${activeAll ? "bg-green-500 " : "border-black border"} ${
               activeAll ? "text-white" : "text-black"
-            }  font-bold py-2 px-4 rounded shadow-2xl`}
+            }  font-bold py-2 px-4 rounded shadow-2xl `}
           >
         Aplikacije
           </button>
-          {/* <button
-            onClick={handleBranding}
-            className={`flex-1 ${activeBranding ? "bg-green-500" : ""} ${
-              activeBranding ? "text-white" : "text-black"
-            } font-bold py-2 px-4 rounded shadow-2xl`}
-          >
-        
-          </button> */}
+      
           <button
             onClick={handleRazno}
-            className={`flex-1 ${razno ? "bg-green-500" : ""} ${
+            className={`flex-1 duration-300 ${razno ? "bg-green-500 " : "border-black border"} ${
               razno ? "text-white" : "text-black"
             } font-bold py-2 px-4 rounded shadow-2xl`}
           >
@@ -84,7 +77,7 @@ function Blogs({lang}) {
         </div>
       </div>
 
-      <div className="grid md:grid-cols-2 xl:grid-cols-2 max-w-3xl mx-auto gap-20 w-full">
+      <div className="grid md:grid-cols-2 xl:grid-cols-3 max-w-5xl mx-auto gap-20 w-full px-5">
         {filteredItems.map((item) => (
           <div key={item.id} className="relative group">
       <a

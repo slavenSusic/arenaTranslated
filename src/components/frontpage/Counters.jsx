@@ -8,7 +8,7 @@ function CounterComponent({titles}) {
   return (
 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 items-center justify-center gap-y-16 py-10" style={{backgroundImage:'../../assets/banner.jpg'}}>
                             <Number
-                    n={12}
+                    n={10}
                     title=" Years Helping Business"
                     titles={titles}
                     client:visible
@@ -18,7 +18,7 @@ function CounterComponent({titles}) {
            
               
                   <Number
-                    n={90}
+                    n={50}
                     title=" Working Employees"
             className="z-20"
                     client:visible
@@ -28,7 +28,7 @@ function CounterComponent({titles}) {
           
               
                   <Number
-                    n={100}
+                    n={36}
                     title=" Complete Projects"
             
                     client:visible
@@ -37,7 +37,7 @@ function CounterComponent({titles}) {
 
           
                   <Number
-                    n={12}
+                    n={20}
                     title=" Happy Customers"
                     client:visible
                   />
