@@ -3,21 +3,17 @@ export const languages = {
   hr: 'HR',
 };
 
-
+export const defaultLang = 'en';
 
 
 export const routes = {
-    hr: {
-      'services': 'usluge',
-    },
-    fr: {
-      'services': 'prestations-de-service',
-    },
-    }
+  hr: {
+    'services': 'usluge',
+  },
+  }
 
   
-  
-  export const defaultLang = 'en';
+
   
   export const ui = {
     en: {

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import logo from '../assets/digitalarena.png';
 
+
 const FooterJs = ({it,ict,energetics, isoGdprCisco,translatedParagraf,
     translatedEnergetika,services,urediHR,urediBiH}) => {
  const cur=new Date()
@@ -12,6 +13,7 @@ const FooterJs = ({it,ict,energetics, isoGdprCisco,translatedParagraf,
       <div className="flex items-center justify-center border-b-2 border-neutral-200 lg:justify-between">
         <div className="mr-12 hidden lg:block"></div>
       </div>
+
 
       <div className="mx-6 py-10 text-center md:text-left">
         <div className="grid-1 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
@@ -176,7 +178,9 @@ const FooterJs = ({it,ict,energetics, isoGdprCisco,translatedParagraf,
 </div>
 
   <div className="bg-gray-800 border-t border-white p-6 text-left text-white font-bold  ">
-  <span id="copyright">Copyright digital arena {year}</span>
+  <span id="copyright" className="text-gray-200 text-xl">
+  &copy; Digital Arena {year}
+</span>
     
 </div>
 </footer>

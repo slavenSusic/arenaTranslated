@@ -6,6 +6,7 @@ import iso from '../../assets/iso.svg'
 import gdpr from '../../assets/gdpr.svg'
 import ciso from '../../assets/ciso.svg'
 import { getLangFromUrl, useTranslations, useTranslatedPath } from '../../i18n/utils';
+import LanguagePicker from '../LanguagePicker.astro'
 
 let lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -69,6 +70,7 @@ const services=
 
 
 <div class="bg-white pt-20">
+  <LanguagePicker/>
     <p class="text-green-500 text-center font-bold text-lg md:text-2xl">{t('ser.sub')}</p>
     <h2 class="text-center font-bold text-3xl md:text-4xl"> {t('ser.headline')}</h2>
 </div>

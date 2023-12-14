@@ -10,5 +10,13 @@ import tailwind from "@astrojs/tailwind";
 export default defineConfig({
   integrations: [react(), tailwind()],
   output: 'server',
-  adapter: vercel()
+  adapter: vercel(),
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en", "hr"],
+    routing: {
+        prefixDefaultLocale: true
+    }
+  }
+  
 });
