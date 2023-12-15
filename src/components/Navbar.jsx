@@ -1,99 +1,136 @@
-import React, { useState, useEffect } from 'react';
-import logo from '../assets/digitalarena.png';
 
-const Navbar = ({
-  homeText, homeLink, services, servicesLink,
-  about, aboutLink, portfolio, portfolioLink, languageLinks
+import React, { useState,useEffect } from 'react';
+import logo from '../assets/digitalarena.png';
+import { Image } from 'astro:assets';
+import { motion, AnimatePresence } from 'framer-motion';
+
+const Navbar = ({homeText,homeLink,
+
+  services,servicesLink, 
+  about,aboutLink,portfolio, portfolioLink,languages
+
+
+
 }) => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  const toggleMenu = () => {
+    setMenuOpen(!isMenuOpen);
+  };
+
+
+
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY >= window.innerHeight / 2);
+      const scrollY = window.scrollY;
+      const halfPage = window.innerHeight / 2;
+      setIsScrolled(scrollY >= halfPage);
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
-  const cur=new Date()
-  const year =cur.getFullYear()
-
   return (
-    <div className={`fixed top-0 w-full z-50 transition duration-500 ease-in-out ${isScrolled ? 'bg-white shadow-lg' : 'bg-transparent'}`}>
-      <div className="max-w-6xl mx-auto">
-        <div className="flex justify-between items-center py-3 md:py-4">
-         {/* <img src={logo} alt="" /> */}
-          <div className="flex items-center justify-center px-5">
-            <img src={logo.src} alt="logo" className="h-10 md:h-12" />
+    <motion.div key="navbar" className="z-50 " >
+      <nav className={`absolute top-0 left-0 w-full h-auto bg-transparent transition-all duration-400 ease-in-out z-50 ${
+        isScrolled ? "bg-white" : "" 
+      }`}>
+        <div className="lg:hidden">
+          <button className="navbar-burger flex items-center text-green-600 p-3 z-40" onClick={toggleMenu}>
+            <svg className="block h-4 w-4 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <title>Mobile menu</title>
+              <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+            </svg>
+          </button>
+        </div>
+
+        <ul className="flex items-center justify-center flex-col gap-20 pt-10">
+          <div className="hidden absolute left-20 transform lg:flex lg:space-x-6 pt-5">
+            <img src={logo.src} alt="logo" className="w-1/5  hidden lg:block" />
           </div>
 
-          {/* Navigation links for large screens */}
-          <div className="hidden md:flex space-x-8">
-           <a href={homeLink} className={`text-gray-100 hover:text-green-600 text-xl ${isScrolled ? 'text-green-500' : ''}`}>{homeText}</a>
-            <a href={aboutLink} className={`text-gray-100 hover:text-green-600 text-xl ${isScrolled ? 'text-green-500' : ''}`}>{about}</a>
-            <a href={servicesLink} className={`text-gray-100 hover:text-green-600 text-xl ${isScrolled ? 'text-green-500' : ''}`}>{services}</a>
-            <a href={portfolioLink} className={`text-gray-100 hover:text-green-600 text-xl ${isScrolled ? 'text-green-500' : ''}`}>{portfolio}</a>
-        
-            {languageLinks.map(({ href, label }, index) => (
-                <ul className={`text-gray-100 hover:text-green-600 text-xl list-none ${isScrolled ? 'text-green-500' : ''}`}>
-        <li key={index}>
-          <a href={href} className={`text-gray-100 hover:text-green-600 text-xl list-none ${isScrolled ? 'text-green-500' : ''}`}>{label}</a>
+          <div className="hidden absolute right-20 transform lg:flex lg:space-x-6 pt-5">
+            <li><a className="text-lg text-white hover:text-green-500" href={homeLink}>{homeText}</a></li>
+            <li className="text-black"></li>
+            <li><a className="text-lg text-white hover:text-green-500" href={aboutLink}>{about}</a></li>
+            <li className="text-white"></li>
+            <li><a className="text-lg text-white hover:text-green-500" href={servicesLink}>{services}</a></li>
+            <li className="text-white"></li>
+            <li><a className="text-lg text-white hover:text-green-500" href={portfolioLink}>{portfolio}</a></li>
+            <li className="text-white"></li>
+            <ul className="flex gap-5">
+      {languages.map(({ code, label }, index) => (
+        <li key={index} className="flex items-center">
+          <a
+            href={`/${code}/`}
+            className="text-lg text-white hover:text-green-500 transition duration-300"
+          >
+            {label}
+          </a>
         </li>
-        </ul>
-       
       ))}
-            {/* Add other links similarly */}
+    </ul>
           </div>
-
-          {/* Mobile menu button */}
-          <div className="md:hidden z-50 px-5">
-            
-            <button onClick={() => setMenuOpen(!isMenuOpen)} className="text-gray-800 hover:text-green-600 focus:outline-none focus:text-green-600">
-            {!isMenuOpen ? <svg xmlns="http://www.w3.org/2000/svg" className='' width="24" height="24" viewBox="0 0 24 24" stroke={`${!isScrolled ? 'white' : 'black'} `} strokeWidth="2">
-  <path d="M2 5h20M2 12h20M2 19h20"/>
-</svg> : '' }
-            </button>
-          </div>
+        </ul>
+      </nav>
+      
+      <AnimatePresence>
+  {isMenuOpen && (
+    <motion.aside
+      key="navbar-menu"
+      initial={{ opacity: 0, x: '-100%' }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: '-100%' }}
+      className={`navbar-menu absolute z-50 transition-all duration-300 ease-in-out w-full h-[60%] bg-gradient-to-b from-green-800 via-green-700 to-green-500`}
+    >
+      <div className="navbar-backdrop fixed w-full h-full"></div>
+      <nav className="fixed top-0 left-0 bottom-0 flex flex-col w-full max-w-base py-6 px-6 overflow-y-auto">
+        <div className="flex items-center mb-8 justify-between">
+          <img src={logo.src} alt="logo" className="w-1/2 md:w-1/3 lg:hidden" />
+          <button className="navbar-close" onClick={toggleMenu}>
+            <svg className="h-6 w-6 text-white cursor-pointer hover:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
         </div>
-      </div>
-
-      {/* Mobile menu */}
-      <div className={`absolute top-0 inset-x-0  transition transform origin-top-right md:hidden ${isMenuOpen ? 'scale-100' : 'hidden scale-95 opacity-0'}`}>
-        <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
-          <div className="pt-5 pb-6 px-5">
-            <div className="flex items-center justify-between">
-              <div>
-                <img src={logo.src} alt="logo" className="h-8 w-auto" />
-              </div>
-              <div className="-mr-2">
-                <button onClick={() => setMenuOpen(false)} className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-600">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-  <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-  <path d="M0 0h24v24H0z" fill="none"/>
-</svg>          </button>
-              </div>
-            </div>
-            <div className="mt-6">
-            <nav className="grid gap-y-4">
-  <a href={homeLink} className="px-4 py-2 text-gray-900 hover:text-green-600 font-medium rounded-md hover:bg-gray-50">{homeText}</a>
-  <a href={aboutLink} className="px-4 py-2 text-gray-900 hover:text-green-600 font-medium rounded-md hover:bg-gray-50">{about}</a>
-  <a href={servicesLink} className="px-4 py-2 text-gray-900 hover:text-green-600 font-medium rounded-md hover:bg-gray-50">{services}</a>
-  <a href={portfolioLink} className="px-4 py-2 text-gray-900 hover:text-green-600 font-medium rounded-md hover:bg-gray-50">{portfolio}</a>
-  {languageLinks.map(({ href, label }, index) => (
-    <a key={index} href={href} className="px-4 py-2 text-green-600 hover:text-green-600 font-medium rounded-md hover:bg-gray-50">{label}</a>
-  ))}
-  {/* Add other links similarly */}
-</nav>
-            </div>
-          </div>
-          <span id="copyright" className="text-gray-900 text-xl p-5 font-bold">
-  &copy; Digital Arena {year}
-</span>
+        <ul className="mb-8">
+          <li className='py-2 hover:bg-white group rounded-md duration-300'><a className="text-lg p-2 duration-300 group-hover:text-green-800 text-white hover:text-green-500" href={homeLink}>{homeText}</a></li>
+          <li className='py-2 hover:bg-white group rounded-md duration-300'><a className="duration-300 text-lg p-2 group-hover:text-green-800 text-white hover:text-green-500" href={aboutLink}>{about}</a></li>
+          <li className='py-2 hover:bg-white group rounded-md duration-300'><a className="duration-300 text-lg p-2 group-hover:text-green-800 text-white hover:text-green-500" href={servicesLink}>{services}</a></li>
+          <li className='py-2 hover:bg-white group rounded-md '><a className="text-lg p-2 group-hover:text-green-800 text-white hover:text-green-500" href={portfolioLink}>{portfolio}</a></li>
+        </ul>
+        <ul className="flex gap-5">
+          {languages.map(({ code, label }, index) => (
+            <motion.li
+              key={index}
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="flex items-center hover:bg-white rounded-md group"
+            >
+              <a
+                href={`/${code}/`}
+                className="text-lg text-white hover:text-green-800 transition duration-300 group-hover:text-green-700 p-3"
+              >
+               {label}
+              </a>
+            </motion.li>
+          ))}
+        </ul>
+        <div className="mt-auto">
+          <p className="my-4 text-xs text-center text-white">
+            <span>Copyright Â© digital arena 2024</span>
+          </p>
         </div>
-   
-      </div>
-    </div>
+      </nav>
+    </motion.aside>
+  )}
+</AnimatePresence>
+    </motion.div>
   );
 };
 
